@@ -4,7 +4,7 @@ package net.tinybrick.doc.configuration;
  * Created by wangji on 2016/6/14.
  */
 
-import net.tinybrick.doc.annotation.ApiDocDefinationResolver;
+import net.tinybrick.doc.annotation.ApiDocResolver;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -31,8 +31,8 @@ public class AipDocConfigure extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public ApiDocDefinationResolver myAnnotationResolver() {
-        return new ApiDocDefinationResolver();
+    public ApiDocResolver apiDocResolver() {
+        return new ApiDocResolver();
     }
 }
 
