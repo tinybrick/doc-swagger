@@ -2,6 +2,8 @@ package net.tinybrick.doc.configuration;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.bind.annotation.RequestMapping;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -17,9 +19,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 /**
  * Created by wangji on 2016/6/14.
  */
-@EnableSwagger2
-public class SwaggerEnabled {
-    static Logger logger = Logger.getLogger(SwaggerEnabled.class);
+public class AutoApiDocEnabler {
+    static Logger logger = Logger.getLogger(AutoApiDocEnabler.class);
 
     String rootPath = "/";
     String apiTitle = null;
@@ -38,7 +39,7 @@ public class SwaggerEnabled {
         this.apiGrougName = apiGrougName;
     }
 
-    public SwaggerEnabled() {
+    public AutoApiDocEnabler() {
         Class clazz = this.getClass();
         apiTitle = (null == apiTitle? clazz.getSimpleName() + " API":null);
 
@@ -57,7 +58,7 @@ public class SwaggerEnabled {
         }
     }
 
-    @Bean
+    //@Bean
     public Docket swaggerSpringMvcPlugin() {
         ApiInfo apiInfo = new ApiInfo(apiTitle, apiDescription, rootPath.toLowerCase().matches("^\\/[v|ver]+[0-9.]+")?rootPath.substring(1):null, null, new Contact(null,null,null), null, null);
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
